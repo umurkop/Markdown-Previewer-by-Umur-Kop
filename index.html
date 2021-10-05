@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <title>Markdown Previewer by Umur Kop</title>
+
+    <script src="./js/marked.js"></script>
+    <script>
+      marked.setOptions({breaks: true})
+      function updatePreview() {
+        let previewElement = document.getElementById("preview");
+        let editorValue = document.getElementById("editor").value;
+        let markedUpHTML = marked(editorValue);
+        previewElement.innerHTML = markedUpHTML;
+      }
+
+      function setDefault() {
+        let defaultText = `\
+# Useful Programmer
+## a markdown previewer
+
+[Learn more about Swallowtail butterfly](https://en.wikipedia.org/wiki/Swallowtail_butterfly).
+
+I think you should use an
+\`<addr>\` element here instead.
+
+\`\`\`
+function test() {
+  console.log("notice the blank line before this function?");
+}
+\`\`\`
+- Item 1
+- Item 2
+- Item 3
+
+As Kanye West said:
+
+> We're living the future so
+> the present is our past.
+
+![Swallowtail butterfly](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Schwalbenschwanz_papilio_machaon.jpg/800px-Schwalbenschwanz_papilio_machaon.jpg)
+
+**Bolded Text**
+        `;
+        let editorField = document.getElementById("editor");
+        let previewElement = document.getElementById("preview");
+        editorField.value = defaultText;
+        previewElement.innerHTML = marked(defaultText);
+      }
+    </script>
+  </head>
+  <body onLoad="setDefault()" class="bg-success">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col text-center text-white bg-success my-3">
+          <h1>Markdown Previewer by Umur Kop<h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 bg-primary d-flex flex-column">
+          <h2 class="text-white text-center my-3">Editor</h2>
+          <div class="form-group flex-grow-1 d-flex flex-column my-3">
+            <textarea id="editor" onkeyup="updatePreview()" class="form-control flex-grow-1"></textarea>
+          </div>
+        </div>
+        <div class="col-6 bg-danger">
+          <h2 class="text-white text-center my-3">Preview</h2>
+          <div id="preview"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
